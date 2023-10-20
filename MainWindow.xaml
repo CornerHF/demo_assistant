@@ -1,0 +1,55 @@
+﻿<Window x:Class="DemoAssistant.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DemoAssistant"
+        mc:Ignorable="d"
+        Title="Demo助手" Height="233.334" Width="800" Closed="Window_Closed" ResizeMode="CanMinimize">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid HorizontalAlignment="Left" Height="184" Margin="10,10,0,0" VerticalAlignment="Top" Width="772">
+            <Label x:Name="label" Content="遊戲路徑(.exe)" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="98"/>
+            <TextBox x:Name="textBox_gameExePath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="113,10,0,0" VerticalAlignment="Top" Width="569" RenderTransformOrigin="0.4,0.087"
+                     Text = "{Binding GameExePath, Mode = TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Label x:Name="label_Copy" Content="存檔資料夾路徑" HorizontalAlignment="Left" Margin="10,40,0,0" VerticalAlignment="Top" Width="98"/>
+            <TextBox x:Name="textBox_saveFolderPath" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="113,40,0,0" VerticalAlignment="Top" Width="569" RenderTransformOrigin="0.4,0.087"
+                     Text= "{Binding SaveFolderPath, Mode= TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+            <Button x:Name="button_browseGameExePath" Content="瀏覽" HorizontalAlignment="Left" Margin="687,10,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="button_browseGameExePath_Click"/>
+            <Button x:Name="button_browseSaveFolderPath" Content="瀏覽" HorizontalAlignment="Left" Margin="687,40,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="button_browseSaveFolderPath_Click"/>
+            <CheckBox x:Name="checkBox" Content="重啟遊戲時刪除存檔資料夾裡符合存檔格式的檔案   (存檔格式為空時不會刪除任何檔案。)" HorizontalAlignment="Left" Margin="113,100,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.4,0.333"
+                      IsChecked="{Binding Path=RemoveSaveFolderContent, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label x:Name="label_Copy1" Content="重啟遊戲快捷鍵" HorizontalAlignment="Left" Margin="10,120,0,0" VerticalAlignment="Top" Width="98"/>
+
+            <TextBox x:Name="textBox_shortCut" 
+                     HorizontalAlignment="Left" 
+                     VerticalContentAlignment="Center"
+                     Height="25"
+                     Margin="113,120,0,0" 
+                     TextWrapping="Wrap" 
+                     VerticalAlignment="Top"
+                     Width="121" 
+                     RenderTransformOrigin="0.4,0.087" PreviewKeyDown="textBox_shortCut_PreviewKeyDown"
+                     Text="{Binding Path=ShortCutFullName, Mode=OneWay}"/>
+
+            <Button x:Name="button_clearShortCut" Content="清除" HorizontalAlignment="Left" Margin="239,120,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="button_clearShortCut_Click"/>
+            <Button x:Name="button_save" Content="保存" HorizontalAlignment="Left" Margin="299,150,0,0" VerticalAlignment="Top" Width="75" Height="25"
+                    IsEnabled="{Binding Path=AnyChange, Mode=OneWay}"
+                    Click="button_save_Click"/>
+
+            <Button x:Name="button_restore" Content="還原" HorizontalAlignment="Right" Margin="0,150,301,0" VerticalAlignment="Top" Width="75" Height="25" Click="button_restore_Click"
+                    IsEnabled="{Binding Path=AnyChange, Mode=OneWay}"/>
+            <Label x:Name="label_Copy2" Content="存檔格式" HorizontalAlignment="Left" Margin="10,70,0,0" VerticalAlignment="Top" Width="98"/>
+            <TextBox x:Name="textBox_saveFileFormat" HorizontalAlignment="Left" VerticalContentAlignment="Center" Height="25" Margin="113,70,0,0" VerticalAlignment="Top" Width="423" RenderTransformOrigin="0.4,0.087"
+                Text= "{Binding SaveFilePattern, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+            <Label x:Name="txtLabel1" Content="檔案符合數 : " HorizontalAlignment="Left" Margin="541,70,0,0" VerticalAlignment="Top" Width="76" RenderTransformOrigin="0.509,0.747"/>
+            <Label x:Name="txtLabel1_Copy" HorizontalAlignment="Left" Margin="617,70,0,0" VerticalAlignment="Top" Width="65"
+                   Content="{Binding MatchedSaveFileCount, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}" Height="25"/>
+            <Button x:Name="button_checkFileDetail" Content="查看詳細" HorizontalAlignment="Left" Margin="687,70,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="button_checkFileDetail_Click"/>
+        </Grid>
+    </Grid>
+</Window>
